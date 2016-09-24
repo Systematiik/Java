@@ -1,0 +1,46 @@
+package dna;
+
+import java.util.*;
+import java.io.*;
+
+/** 
+ * @author Jeremy Espino
+ * @StudentNumber 5444575
+ * @DueDate: September 26th, noon
+ * @Objective: 
+ */
+public class DNA{
+    
+    //private Node head,last,next;
+    //private int iterator;
+    //String list;
+    
+    public DNA() throws FileNotFoundException{
+        
+        //File file = new File("assn1in.txt");
+        
+        System.out.println("Please enter the name of the text file: ");
+        Scanner sc = new Scanner(System.in);
+        String s = sc.nextLine();
+        File file = new File(s);
+        System.err.println("--------");
+        
+        
+        System.out.println(file);
+}
+       
+         /* try(Scanner sc = new Scanner(file)) {
+                while(sc.hasNext())
+                 {
+                 char[] c = sc.nextLine().toCharArray();
+                 System.out.println(c);
+                 }
+                }
+          
+
+        catch(FileNotFoundException e){
+         }
+         */
+    
+    public static void main(String[] Args)throws FileNotFoundException{new DNA();}
+}
