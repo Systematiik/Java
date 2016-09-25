@@ -7,40 +7,78 @@ import java.io.*;
  * @author Jeremy Espino
  * @StudentNumber 5444575
  * @DueDate: September 26th, noon
+ * @IDE: NetBeans 8.1
  * @Objective: 
  */
 public class DNA{
     
-    //private Node head,last,next;
-    //private int iterator;
-    //String list;
-    
     public DNA() throws FileNotFoundException{
         
-        //File file = new File("assn1in.txt");
+        //Variables used for reading user input and finding the called file
+        String fileName;
+        File textFile;
         
-        System.out.println("Please enter the name of the text file: ");
+        //Prompts the user for the name of a text file
         Scanner sc = new Scanner(System.in);
-        String s = sc.nextLine();
-        File file = new File(s);
-        System.err.println("--------");
+        System.out.println("Please enter the name of the text file: ");
+        fileName = sc.next();
         
+        //sets the user input as the file
+        textFile = new File(fileName);
+        System.out.println("--------");
         
-        System.out.println(file);
-}
-       
-         /* try(Scanner sc = new Scanner(file)) {
-                while(sc.hasNext())
+        //the scanner to reads tries to find the file
+        try{
+            sc = new Scanner(textFile);
+        }
+        catch(FileNotFoundException e){
+            e.printStackTrace();
+            System.out.println("Failed.");
+            sc.close();
+        }
+        
+        //parses the integers in the file
+        int t = Integer.parseInt(sc.next());
+        int t1 = Integer.parseInt(sc.next());
+        String t2 = sc.nextLine();
+        
+        int[][] tArray = new int[t][];
+        System.err.println(t + " "+ t1 + " " + t2);
+        
+        System.out.println("--------");
+        
+        for(int i = 0; i <= t1; i++)
+        {
+            if(sc.hasNext()){
+                char[] c1 = sc.nextLine().toCharArray();
+                System.err.println(c1);
+            }
+        }
+        System.out.println("--------");
+        
+        //reads and writes the text file
+        while(sc.hasNext())
                  {
                  char[] c = sc.nextLine().toCharArray();
-                 System.out.println(c);
+                 System.err.println(c);
                  }
-                }
-          
-
-        catch(FileNotFoundException e){
-         }
-         */
-    
+        
+        System.out.println("---------------------------------------");
+        //char cd = sc.next().charAt(0);
+        //System.err.println(cd);
+        
+        sc.close();
+}
+    //Reverses the requested strands complement
+    private String reverseComplement(){
+        return "";
+    }
+    //Counts the number of Gs and Cs in each strand
+    private String gcContent(){
+        return "";
+    }
+    private void generateStrands(){
+        
+    }
     public static void main(String[] Args)throws FileNotFoundException{new DNA();}
 }
