@@ -37,6 +37,7 @@ public class DNA{
             sc.close();
         }
         
+        
         //parses the integers in the file
         int t = Integer.parseInt(sc.next());
         int t1 = Integer.parseInt(sc.next());
@@ -56,17 +57,22 @@ public class DNA{
         }
         System.out.println("--------");
         
-        //reads and writes the text file
-        while(sc.hasNext())
-                 {
-                 char[] c = sc.nextLine().toCharArray();
-                 System.err.println(c);
-                 }
+        /*
+        char[][] tArray;
         
-        System.out.println("---------------------------------------");
-        //char cd = sc.next().charAt(0);
-        //System.err.println(cd);
+        //parses the first integer to read 
+        int t = Integer.parseInt(sc.next());
         
+        for(int i = 0; i < t;i++){
+            tArray = new char[t][];
+            int t1 = Integer.parseInt(sc.next());
+            
+                for(int j = 0; j < t1;j++){
+                    String s = sc.next();
+                    //Array[t][t1] = s[t1];
+                    System.err.print(s + "");
+                }
+        }*/
         sc.close();
 }
     //Reverses the requested strands complement
