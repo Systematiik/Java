@@ -8,15 +8,18 @@ import java.io.*;
  * @StudentNumber 5444575
  * @DueDate: September 26th, noon
  * @IDE: NetBeans 8.1
- * @Objective: 
- */
+ **/
 public class DNA{
+    
+    String s;
     
     public DNA() throws FileNotFoundException{
         
         //Variables used for reading user input and finding the called file
         String fileName;
         File textFile;
+        //used to store the characters in the text file as an array
+        char[][] tArray;
         
         //Prompts the user for the name of a text file
         Scanner sc = new Scanner(System.in);
@@ -37,47 +40,47 @@ public class DNA{
             sc.close();
         }
         
-        
-        //parses the integers in the file
-        int t = Integer.parseInt(sc.next());
-        int t1 = Integer.parseInt(sc.next());
-        String t2 = sc.nextLine();
-        
-        int[][] tArray = new int[t][];
-        System.err.println(t + " "+ t1 + " " + t2);
-        
-        System.out.println("--------");
-        
-        for(int i = 0; i <= t1; i++)
-        {
-            if(sc.hasNext()){
-                char[] c1 = sc.nextLine().toCharArray();
-                System.err.println(c1);
-            }
-        }
-        System.out.println("--------");
-        
-        /*
-        char[][] tArray;
-        
         //parses the first integer to read 
         int t = Integer.parseInt(sc.next());
         
+        //loops to the number of strands present in the file
         for(int i = 0; i < t;i++){
             tArray = new char[t][];
             int t1 = Integer.parseInt(sc.next());
-            
+                //loops through each character as a string in each strand
                 for(int j = 0; j < t1;j++){
-                    String s = sc.next();
+                    s = sc.next();
+                    char[] c = s.toCharArray();
+                    //used to display the reverse complement of each strand
+                    boolean sRev = reverseComplement(c);
                     //Array[t][t1] = s[t1];
-                    System.err.print(s + "");
+                    System.err.print("DNA Strand: "  + s + "\n");
+                    System.out.print("Reverse Complement: " + sRev);
                 }
-        }*/
+                
+        }
         sc.close();
 }
     //Reverses the requested strands complement
-    private String reverseComplement(){
-        return "";
+    private boolean reverseComplement(char[] c){
+        boolean rComplement = false;
+        
+        String rev = "";
+        
+        //Reverses the order of the strand
+        for(int i = c.length - 1; i >= 0; i--){
+            rev = rev + c[i];
+        }
+        
+        //finds whether the reverse complement is the same as the original
+        if(s.equals(rev)){
+            rComplement = true;
+            System.out.println(rev);
+        }
+        else{
+            rComplement = false;
+        }
+        return rComplement;
     }
     //Counts the number of Gs and Cs in each strand
     private String gcContent(){
