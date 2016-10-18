@@ -12,25 +12,14 @@ import java.io.*;
 
 public class TreeTraversal {
     
-    NodeTree rootNode;
+    NodeTree rootNode, parent;
+    File file;
     String s;
     
     public TreeTraversal( ){
     
-    File file = new File("assn2in.txt");
-    
-    try(Scanner sc = new Scanner(file)){
-     while(sc.hasNext())
-                 {
-                 char[] c = sc.nextLine().toCharArray();
-                 System.out.println(c);
-                 }  
-    }
-    catch(FileNotFoundException e){
-        e.printStackTrace();
-        System.out.println("Failed Operation.");
-    }
-    
+    System.out.println("*****Original Text File*****");
+    readTree();
     System.out.println("*****Preorder Traversal*****");
     //replace with pre method
     System.out.println("*****Postorder Traversal*****");
@@ -50,6 +39,24 @@ public class TreeTraversal {
      * 
      */
     }
+    
+    public void readTree(){
+    file = new File("assn2in.txt");
+    
+    try(Scanner sc = new Scanner(file)){
+     while(sc.hasNext())
+                 {
+                 char[] c = sc.nextLine().toCharArray();
+                 System.out.println(c);
+                 }  
+    }
+    catch(FileNotFoundException e){
+        e.printStackTrace();
+        System.out.println("Failed Operation.");
+    }
+    }
+    
+    
     public static void main(String[] args) {
     {TreeTraversal t = new TreeTraversal();}
  }
