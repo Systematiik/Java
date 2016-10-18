@@ -3,13 +3,13 @@ package treetraversal;
 class NodeTree{
 
     int child;
-    String rootName;
-    int rootYear;
+    String name;
+    int year;
     
-    private void NodeTree(int child, String rootName, int rootYear){
+    private void NodeTree(int child, String name, int year){
         this.child = child;
-        this.rootName = rootName;
-        this.rootYear = rootYear;
+        this.name = name;
+        this.year = year;
     }
     
 }
