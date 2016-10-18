@@ -1,0 +1,15 @@
+package treetraversal;
+
+class NodeTree{
+
+    int child;
+    String rootName;
+    int rootYear;
+    
+    private void NodeTree(int child, String rootName, int rootYear){
+        this.child = child;
+        this.rootName = rootName;
+        this.rootYear = rootYear;
+    }
+    
+}
