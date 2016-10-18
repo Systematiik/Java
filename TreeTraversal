@@ -1,0 +1,56 @@
+package treetraversal;
+
+/** 
+ * @author Jeremy Espino
+ * @StudentNumber 5444575
+ * @DueDate: October 17th, noon
+ * @Objective: 
+ */
+
+import java.util.*;
+import java.io.*;
+
+public class TreeTraversal {
+    
+    NodeTree rootNode;
+    String s;
+    
+    public TreeTraversal( ){
+    
+    File file = new File("assn2in.txt");
+    
+    try(Scanner sc = new Scanner(file)){
+     while(sc.hasNext())
+                 {
+                 char[] c = sc.nextLine().toCharArray();
+                 System.out.println(c);
+                 }  
+    }
+    catch(FileNotFoundException e){
+        e.printStackTrace();
+        System.out.println("Failed Operation.");
+    }
+    
+    System.out.println("*****Preorder Traversal*****");
+    //replace with pre method
+    System.out.println("*****Postorder Traversal*****");
+    //replace with post method
+    System.out.println("*****Breadth-First Traversal*****");
+    //replace with breadth method
+    System.out.println("Common ancestors of " + "and");
+    /* remember to add the names of ancestors in println and replace this 
+     * with the common ancestors method
+     */
+    
+    
+    /*
+     * Must implement: preorder traversal, postorder traversal (recursive)
+     * Breadth-first traversal (does not need to be recursive)
+     *
+     * 
+     */
+    }
+    public static void main(String[] args) {
+    {TreeTraversal t = new TreeTraversal();}
+ }
+}
