@@ -13,7 +13,8 @@ import java.io.*;
 
 public class TreeTraversal {
     
-    NodeTree rootNode;
+    private ArrayList<NodeTree> arrayList = new ArrayList();
+    private NodeTree rootNode;
     File file;
     String name;
     int year;
@@ -43,8 +44,8 @@ public class TreeTraversal {
      * Used to read and write the original textfile provided
      */
     
-    public TreeTraversal getRootNode(){
-        return this.getRootNode();
+    public NodeTree getRoot(){
+        return rootNode;
     }
     
     //This sets the found root node as the root node
@@ -63,7 +64,6 @@ public class TreeTraversal {
                  }  
     }
     catch(FileNotFoundException e){
-        e.printStackTrace();
         System.out.println("Failed Operation.");
         }
     }
@@ -78,9 +78,9 @@ public class TreeTraversal {
     
     //If the tree is empty, returns null
     public boolean isEmpty(){
+        System.out.println("Tree is empty.");
         return rootNode == null;
     }
-    
     
     /*
      * - Create Pre, Post, Breadth traversals
