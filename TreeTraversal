@@ -4,7 +4,8 @@ package treetraversal;
  * @author Jeremy Espino
  * @StudentNumber 5444575
  * @DueDate: October 17th, noon
- * @Objective: 
+ * @Objective: To build trees and ordering them in Pre-order traversal,
+ *  Postorder traversal recursively and Breadth-First traversal.
  */
 
 import java.util.*;
@@ -12,32 +13,43 @@ import java.io.*;
 
 public class TreeTraversal {
     
-    NodeTree rootNode, parent;
+    NodeTree rootNode;
     File file;
-    String s;
+    String name;
+    int year;
     
     public TreeTraversal( ){
     
+    //This prints out the original textfile
     System.out.println("*****Original Text File*****");
     readTree();
+    //This prints out the tree in preorder traversal
     System.out.println("*****Preorder Traversal*****");
     //replace with pre method
+    //This prints out the tree in postorder traversal
     System.out.println("*****Postorder Traversal*****");
     //replace with post method
+    //This prints out the tree in breadth-first traversal
     System.out.println("*****Breadth-First Traversal*****");
     //replace with breadth method
-    System.out.println("Common ancestors of " + "and");
+    //This prints out the common ancestors for all johns and freds
+    System.out.println("Common ancestors of " + " " + "and " + " ");
     /* remember to add the names of ancestors in println and replace this 
      * with the common ancestors method
      */
-    
+    }
     
     /*
-     * Must implement: preorder traversal, postorder traversal (recursive)
-     * Breadth-first traversal (does not need to be recursive)
-     *
-     * 
+     * Used to read and write the original textfile provided
      */
+    
+    public TreeTraversal getRootNode(){
+        return this.getRootNode();
+    }
+    
+    //This sets the found root node as the root node
+    public void rootSet(NodeTree rootNode){
+        this.rootNode = rootNode;
     }
     
     public void readTree(){
@@ -53,9 +65,28 @@ public class TreeTraversal {
     catch(FileNotFoundException e){
         e.printStackTrace();
         System.out.println("Failed Operation.");
-    }
+        }
     }
     
+    /*
+     * Used to read the original textfile and builds and stores the
+     * the original 
+     */
+    public void buildTree(){
+        
+    }
+    
+    //If the tree is empty, returns null
+    public boolean isEmpty(){
+        return rootNode == null;
+    }
+    
+    
+    /*
+     * - Create Pre, Post, Breadth traversals
+     * - Make method for children
+     * - Make method for parent
+     */
     
     public static void main(String[] args) {
     {TreeTraversal t = new TreeTraversal();}
