@@ -1,15 +1,29 @@
 package treetraversal;
 
+/*
+ * This class is the node class that is to be used in the main class,
+ * TreeTraversal to store information in a list
+ */
 class NodeTree{
 
     int child;
     String name;
     int year;
     
+    //this is used to refer each variable the same as the global variables
     private void NodeTree(int child, String name, int year){
         this.child = child;
         this.name = name;
         this.year = year;
     }
     
+    //this is used to add the nodes in a list
+    private void addNode(String name, int year){
+        this.name = name;
+        this.year = year;
+    }
+    
+    private void getRoot(){
+        
+    }
 }
