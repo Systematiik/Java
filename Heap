@@ -1,0 +1,54 @@
+package heap;
+
+import java.util.*;
+import java.io.*;
+
+/**
+ *
+ * @author je13yx
+ */
+public class Heap {
+
+    Scanner sc;
+    File textFile;
+    String fileName;
+    
+    public Heap( ) {
+        sc = new Scanner(System.in);
+        System.out.print("Enter the name of the text file: ");
+        fileName = sc.next();
+        
+        textFile = new File(fileName);
+        
+        try{
+            sc = new Scanner(textFile);
+        }
+        catch(FileNotFoundException e){
+            e.printStackTrace();
+            System.out.println("Failed.");
+            sc.close();
+            
+            int n = Integer.parseInt(sc.next());
+            
+            for(int i = 0; i < n; i++){
+                
+            }
+        }
+    }
+
+    public void buildHeap( ) {
+        
+    }
+    
+    public void minHeap( ) {
+        
+    }
+    
+    public void radixSort( ) {
+        
+    }
+    
+    public static void main(String[] args) {
+    {Heap h = new Heap();}
+    }
+}
