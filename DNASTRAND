@@ -1,93 +1,168 @@
-package dna;
-
-import java.util.*;
 import java.io.*;
+import java.util.*;
 
-/** 
- * @author Jeremy Espino
- * @StudentNumber 5444575
- * @DueDate: September 26th, noon
- * @IDE: NetBeans 8.1
- **/
-public class DNA{
-    
-    String s;
-    
-    public DNA() throws FileNotFoundException{
-        
-        //Variables used for reading user input and finding the called file
-        String fileName;
-        File textFile;
-        //used to store the characters in the text file as an array
-        char[][] tArray;
-        
-        //Prompts the user for the name of a text file
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Please enter the name of the text file: ");
-        fileName = sc.next();
-        
-        //sets the user input as the file
-        textFile = new File(fileName);
-        System.out.println("--------");
-        
-        //the scanner to reads tries to find the file
-        try{
-            sc = new Scanner(textFile);
+/* Jeremy Espino
+ * 5444575
+ * Due September 20th, 2019 @ noon
+ * This program reads an input file where the file will indicate how many DNA strands that needs to be read, then tells
+ * the user how many bases to expect. Following is a gc counter which counts how many Gs and Cs are in each strand,
+ * the reverse complement of the provided strand and a boolean checking whether the strand is self-complementary.
+ *
+ * Created using IntelliJ
+ */
+public class DNAStrand {
+
+    //constructor
+    public DNAStrand() {
+    }
+
+    //Used to count the number of Gs and Cs in a strand
+    public static int gcContent(Node head) {
+        if(head == null){
+            return 0;
         }
-        catch(FileNotFoundException e){
-            e.printStackTrace();
-            System.out.println("Failed.");
-            sc.close();
+
+        //When method is being traversed backwards. If base contains G or C, return +1
+        if(head.base.equals("G") || head.base.equals("C")){
+            return 1 + gcContent(head.next);
+        } else {
+            return gcContent(head.next);
         }
-        
-        //parses the first integer to read 
-        int t = Integer.parseInt(sc.next());
-        
-        //loops to the number of strands present in the file
-        for(int i = 0; i < t;i++){
-            tArray = new char[t][];
-            int t1 = Integer.parseInt(sc.next());
-                //loops through each character as a string in each strand
-                for(int j = 0; j < t1;j++){
-                    s = sc.next();
-                    char[] c = s.toCharArray();
-                    //used to display the reverse complement of each strand
-                    boolean sRev = reverseComplement(c);
-                    //Array[t][t1] = s[t1];
-                    System.err.print("DNA Strand: "  + s + "\n");
-                    System.out.print("Reverse Complement: " + sRev);
+    }
+
+    //Finds the complement of given strand and reverses it
+    public static Node reverseComplement(Node head) {
+        Node first;
+
+        //if the head is not null or the node next is not null, return head complementary
+        if(head == null || head.next == null){
+            if(head.base.equals("A")){
+                head.base = "T";
                 }
-                
+            else if(head.base.equals("T")){
+                head.base = "A";
+                }
+            else if(head.base.equals("G")) {
+                head.base = "C";
+                }
+            else {
+                head.base = "G";
+            }
+            return head;
         }
+
+        //This will reverse the linked list and does the complement as it recursively calls the nodes
+        first = reverseComplement(head.next);
+        if(head.base.equals("A")){
+            head.base = "T";
+            }
+            else if(head.base.equals("T")){
+                head.base = "A";
+            }
+            else if(head.base.equals("G")) {
+                head.base = "C";
+            }
+            else {
+                head.base = "G";
+        }
+        head.next.next = head;
+        head.next = null;
+
+        return first;
+    }
+
+    //Compares strands to find if they are identical, returns true if they are identical
+    public boolean compare(Node i, Node j) {
+
+        //if node i and j are both null, they are defaulted as identical
+        if(i == null && j == null){
+            return true;
+        }
+
+        //if node i and j are not null, compare the next node
+        if(i != null && j != null){
+            return (i.base == j.base) && compare(i.next, j.next);
+        }
+        return false;
+    }
+
+    /*This method creates the strand for the linked list with the given parameters
+     *n = desired length of strand
+     *k = represents position to be filled
+     *rate = the desired combined total of Gs and Cs
+     */
+    public static Node generateStrands(int n, int k, int rate) {
+        String[] strandArr = {"A", "T", "G", "C"};
+        Node head;
+        Node b;
+        head = new Node(null);
+
+        //if n is 0, no need to make any strands
+        if(n == 0){
+            return head;
+        }
+
+        //if n is greater than 0, strand is built recursively by its respective parameters
+        if(n > 0){
+            generateStrands(n - 1, k + 1, rate);
+        }
+        return head;
+    }
+
+    public static void main(String[] args) throws FileNotFoundException {
+        //initializes classes
+        DNAStrand d = new DNAStrand();
+        DNALinkedList link = new DNALinkedList();
+
+        int numOfLinkedLists;
+        boolean selfC = false;
+        int counter = 0;
+
+        //When testing other text files, just modify the name of the file and also have the text file in the src folder
+        Scanner sc = new Scanner(new File("src/assn1in.txt"));
+
+        //Takes and stores the first integer of the file
+        String intStr = sc.nextLine();
+        numOfLinkedLists = Integer.parseInt(intStr);
+
+        for(int i = 0; i < numOfLinkedLists; i++){
+            String l = sc.nextLine();
+            String[] splitLines = l.split("\\s+");
+
+            //prints each line and removes the spaces within the file being read
+            Node strand = link.createStrand(splitLines);
+            link.printList(strand);
+
+            System.out.print("\tGC Content: " + gcContent(strand));
+            System.out.print("\tReverse complement: ");
+            Node reverseC = reverseComplement(strand);
+            link.printList(reverseC);
+
+            //Used to check if lists are self-complementary
+            do {
+                if (strand.base == reverseC.base) {
+                    selfC = false;
+                } else {
+                    selfC = true;
+                }
+                counter = strand.base.length();
+                counter--;
+            } while(counter != 0);
+
+            System.out.print("\tSelf-Complementary: " + selfC);
+            //break line per line read
+            System.out.println();
+        }
+
+        //Grabs the 1st integer after the lists are made
+        String n = sc.next();
+        int nInt = Integer.parseInt(n);
+
+        //Grabs the 2nd integer
+        String m = sc.next();
+        int rate = Integer.parseInt(m);
+
+        generateStrands(nInt, 0, rate);
         sc.close();
-}
-    //Reverses the requested strands complement
-    private boolean reverseComplement(char[] c){
-        boolean rComplement = false;
-        
-        String rev = "";
-        
-        //Reverses the order of the strand
-        for(int i = c.length - 1; i >= 0; i--){
-            rev = rev + c[i];
-        }
-        
-        //finds whether the reverse complement is the same as the original
-        if(s.equals(rev)){
-            rComplement = true;
-            System.out.println(rev);
-        }
-        else{
-            rComplement = false;
-        }
-        return rComplement;
     }
-    //Counts the number of Gs and Cs in each strand
-    private String gcContent(){
-        return "";
-    }
-    private void generateStrands(){
-        
-    }
-    public static void main(String[] Args)throws FileNotFoundException{new DNA();}
 }
